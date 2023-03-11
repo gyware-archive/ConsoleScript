@@ -37,3 +37,25 @@ Class ConsoleScript
    End Property
    
 End Class
+
+Set Console = New ConsoleScript
+Console.Force()
+Console.EnableAnsi()
+
+Console.WriteLine "[91mHello [92mWorld[94m![0m"
+
+Console.WriteLine "Clearing in..."
+Console.WriteLine ""
+Console.WriteLine "[1F3[0m"
+WScript.Sleep 1000
+Console.WriteLine "[1F2[0m"
+WScript.Sleep 1000
+Console.WriteLine "[1F1[0m"
+WScript.Sleep 1000
+Console.Clear()
+
+Console.Write "Enter your name: "
+Dim name
+name = Console.ReadLine()
+Console.Write "Hello, " & name & "!"
+WScript.Sleep 6000
