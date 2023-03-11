@@ -1,1 +1,1 @@
-# C-star
+# CStar
