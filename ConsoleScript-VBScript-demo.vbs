@@ -1,45 +1,43 @@
 Class ConsoleScript
-   
-   Public Property Get Force()
-      If InStr(LCase(WScript.FullName), "cscript.exe") = 0 Then
-        CreateObject("WScript.Shell").Run "cscript.exe //NoLogo " & Chr(34) & WScript.ScriptFullName & Chr(34)
-        WScript.Quit
-    End If
-   End Property
 
-   Public Property Get WriteLine(txt)
-      WScript.StdOut.WriteLine txt
-   End Property
+   Public Function WriteLine(txt)
+      CreateObject("Scripting.FileSystemObject").GetStandardStream(1).WriteLine(txt)
+   End Function
    
-   Public Property Get Write(txt)
-      WScript.StdOut.Write txt
-   End Property
+   Public Function Write(txt)
+      CreateObject("Scripting.FileSystemObject").GetStandardStream(1).Write(txt)
+   End Function
    
-   Public Property Get ReadLine()
-      ReadLine = WScript.StdIn.ReadLine
-   End Property
+   Public Function ReadAll()
+      ReadAll = CreateObject("Scripting.FileSystemObject").GetStandardStream(0).ReadAll()
+   End Function
    
-   Public Property Get Read(i)
-      Read = WScript.StdIn.Read(i)
-   End Property
+   Public Function ReadLine()
+      ReadLine = CreateObject("Scripting.FileSystemObject").GetStandardStream(0).ReadLine()
+   End Function
    
-   Public Property Get Clear()
-      For i = 1 To 100
-        WScript.StdOut.WriteLine ""
-      Next
-   End Property
+   Public Function Read(i)
+      Read = CreateObject("Scripting.FileSystemObject").GetStandardStream(0).Read(i)
+   End Function
    
-   Public Property Get EnableAnsi()
+   Public Function Clear()
+      CreateObject("Scripting.FileSystemObject").GetStandardStream(1).WriteBlankLines(100)
+   End Function
+
+   Public Function WriteBlankLines(i)
+      CreateObject("Scripting.FileSystemObject").GetStandardStream(1).WriteBlankLines(i)
+   End Function
+   
+   Public Function EnableAnsi()
       Set PS = CreateObject("WScript.Shell").Exec("powershell.exe -noProfile -executionPolicy bypass -c ""exit""")
-	  While PS.Status = 0
-         WScript.Sleep 30
-	  Wend
-   End Property
+      PS.Terminate()
+   End Function
    
 End Class
 
 Set Console = New ConsoleScript
-Console.Force()
+
+
 Console.EnableAnsi()
 
 Console.WriteLine "[91mHello [92mWorld[94m![0m"

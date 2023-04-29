@@ -1,32 +1,36 @@
 Class ConsoleScript
 
-   Public Sub WriteLine(txt)
-      CreateObject("Scripting.FileSystemObject").GetStandardStream(1).WriteLine txt
-   End Sub
+   Public Function WriteLine(txt)
+      CreateObject("Scripting.FileSystemObject").GetStandardStream(1).WriteLine(txt)
+   End Function
    
-   Public Sub Write(txt)
-      CreateObject("Scripting.FileSystemObject").GetStandardStream(1).Write txt
-   End Sub
+   Public Function Write(txt)
+      CreateObject("Scripting.FileSystemObject").GetStandardStream(1).Write(txt)
+   End Function
    
-   Public Sub ReadLine()
-      ReadLine = CreateObject("Scripting.FileSystemObject").GetStandardStream(1).ReadLine
-   End Sub
+   Public Function ReadAll()
+      ReadAll = CreateObject("Scripting.FileSystemObject").GetStandardStream(0).ReadAll()
+   End Function
    
-   Public Sub Read(i)
-      Read = CreateObject("Scripting.FileSystemObject").GetStandardStream(1).Read(i)
-   End Sub
+   Public Function ReadLine()
+      ReadLine = CreateObject("Scripting.FileSystemObject").GetStandardStream(0).ReadLine()
+   End Function
    
-   Public Sub Clear()
+   Public Function Read(i)
+      Read = CreateObject("Scripting.FileSystemObject").GetStandardStream(0).Read(i)
+   End Function
+   
+   Public Function Clear()
       CreateObject("Scripting.FileSystemObject").GetStandardStream(1).WriteBlankLines(100)
-   End Sub
+   End Function
 
-   Public Sub WriteBlankLines(i)
+   Public Function WriteBlankLines(i)
       CreateObject("Scripting.FileSystemObject").GetStandardStream(1).WriteBlankLines(i)
-   End Sub
+   End Function
    
-   Public Sub EnableAnsi()
+   Public Function EnableAnsi()
       Set PS = CreateObject("WScript.Shell").Exec("powershell.exe -noProfile -executionPolicy bypass -c ""exit""")
       PS.Terminate()
-   End Sub
+   End Function
    
 End Class
