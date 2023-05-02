@@ -29,8 +29,7 @@ Class ConsoleScript
    End Function
    
    Public Function EnableAnsi()
-      Set PS = CreateObject("WScript.Shell").Exec("powershell.exe -noProfile -executionPolicy bypass -c ""exit""")
-      PS.Terminate()
+      Call CreateObject("WScript.Shell").RegWrite("HKCU\Console\VirtualTerminalLevel", 1, "REG_DWORD")
    End Function
    
 End Class

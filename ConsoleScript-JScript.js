@@ -5,6 +5,5 @@ Console.prototype.Clear = function() {
 };
 
 Console.prototype.EnableAnsi = function() {
-  var PS = new ActiveXObject("WScript.Shell").Exec('powershell.exe -noProfile -executionPolicy bypass -c "exit"');
-  PS.Terminate();
+  new ActiveXObject("WScript.Shell").RegWrite("HKCU\Console\VirtualTerminalLevel", 1, "REG_DWORD");
 };
